@@ -1,96 +1,47 @@
-<!doctype html><script>(function(){
-  
-  /*
-   *  var fun = function(){}[Chain]();
-   *  "object"[fun]();
-   */
+<!doctype html>
+<script src="index.js"></script> 
+<script src="index.js"></script> 
+<script type="text/javascript" src="http://documentcloud.github.com/underscore/underscore.js"></script> 
+<script>
 
-var prop = '__Chain__',
-    overriden,
-    root = this,
-    slice = Array.prototype.slice,
-    exit;
+for(var i in _)(function(){
+  _[i][Chain](true);
+})(i);
 
-var Chain = function(fn,opt_fn_or_bool){
-  if(opt_fn_or_bool===true){
-    fn.toString = function(){
-      Object.prototype[prop]['Chain'].fn = function(){
-        var arg = slice.call(arguments,0);
-        arg.unshift(this);
-        fn.call(root,arg);
-      }
-      return prop;
-    }
-  }else{
-    fn.toString = function(){
-      Object.prototype[prop]['Chain'].fn = opt_fn_or_bool || fn;
-      return prop;
-    }
-  }
-  return fn;
-}
-Chain.version = .01;
+[1,2,3][_.each](function(i){
+  console.log(i);
+})
 
-overriden = Object.prototype[prop] || Object.prototype.isPrototypeOf || function(){};
+</script>
+<script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+<script>
 
-// If Chain equal to or greater has loaded exit
-if(typeof overriden['Chain'] == 'funciton' && overriden['Chain'].version >= Chain.version){
-  Chain = overriden['Chain'];
-  exit = true;
-}
-
-if(typeof module != 'undefined' && module.exports) {
-  module.exports = Chain;
-}else{
-  root['Chain'] = Chain;
-}
-// Exit if Chainy has been included before
-if(exit)return;
-
-function prototype(object){
-  if(prototype['Chain'].fn){
-    var ret = prototype['Chain'].fn.apply(this,arguments);
-    prototype['Chain'].fn = undefined;
-    return ret;
-  }
-  return overriden.call(this,object);
-}
- 
-try{
-  Object.defineprop(Object.prototype,prop,{value:prototype,writable:true,configurable:true});
-  for(var i in {})if(i===prototypeprop) throw 0;
-}catch(error){
-  delete Object.prototype[prop];
-  prop = 'isPrototypeOf';
-  overriden = Object.prototype[prop];
-  Object.prototype[prop] = prototype;
-}
-Object.prototype[prop]['Chain'] = Chain;
-/*Chain(Chain,function(){
-    ;
-  }
-)*/
-
-})();
-
-
+$.map[Chain](true);
 var log = function(){
   console.log(''+this);
-};
-Chain(log);
-
-'This is an example'[log]();
-
-var _={};
-
-_.each = function(obj,argument){
-  console.log('yo');
-  return this;
 }[Chain]();
 
-//$.each = $.each[Chain](true);
+var scream = function(o){
+  alert(this+'!');
+  return this;
+}[Chain]()
 
-object=0;
-//object[_.each]();
- 
-</script> 
+    var log = function(){
+      console.log(''+this);
+    }[Chain]();
+
+    'Example string'[log]();
+
+'This is my string'
+  [log]()
+
+;[1,2,3,4]
+  [$.map](function(i){
+    console.log(i);
+    return i+1;
+  })
+  [log]()
+
+
+
+</script>
