@@ -24,6 +24,7 @@
         </li>
       </ul>
       <div id="content">        <input class="name" value="FirstName LastName" style="display:none" style="0: display; display: none">
+        <h3>The Usage of UnlimitJS</h3>
         <p>
           <a href="index.htm">
             <img src="lib/logo.png" id="logo">
@@ -31,127 +32,54 @@
             <span style="display: block; height: 41px; width: 254px; float: right;  clear: right;" style="0: display; 1: height; 2: width; 3: float; 4: clear; display: block; height: 41px; width: 254px; float: right; clear: right"></span>
             <span style="display: block; height: 67px; width: 219px; float: right;  clear: right;" style="0: display; 1: height; 2: width; 3: float; 4: clear; display: block; height: 67px; width: 219px; float: right; clear: right"></span>
           </a>
-          <strong>UnlimitJS allows for chaining with native JavaScript objects without extending objects'             <code>prototype</code>
-s.</strong>
-  It has a simply           <a href="index.htm#API">API</a>
- and increases the readability of common code.</p>
+When writing JavaScript using jQuery,Mootools.. you probably often start with statements like this.</p>
+        <pre><code>$('input.name').val();</code></pre>
+        <p>Coming back latter you decide to           <code>trim</code>
+ the name, so you add           <code>$.trim</code>
+ to the beginning and           <code>)</code>
+ to the end.</p>
+        <pre><code>$.trim($('input.name').val());</code></pre>
+        <p>You then decide to split the first name, from the last name and map out any invalid characters.</p>
+        <pre><code>$.map($.trim($('input.name').val()).split(' '),function(str){
+  return str.replace(/[-^&amp;]/,'');
+});</code></pre>
+        <p>Finally you decide to rejoin the first name and last name, and save the value.</p>
+        <pre><code>save($.map($.trim($('input.name').val()).split(' '),function(str){
+  return str.replace(/[-^&amp;]/,'');
+}).join(', '));</code></pre>
+        <p>The above is arguable very ugly and unmanageable.  It's incredible difficult to tell where one parenthesis ends for a function and another begins.  You potentially have to read the entire statement if you intend to ever edit the code.</p>
+        <h3>Solution!</h3>
+        <p>Javascript has a native solution, it's called           <code>prototype</code>
+ extension and chaining.  Basically you add prototoypes           <code>String.prototype.trim = /* implementation */ </code>
+ and you could start writing:           <code>' string '.trim()</code>
+ instead of calling functions like           <code>$.trim('  string  ')</code>.  Now although I do agree extending the           <code>prototype</code>
+ has its convenience, it also has its very unfortunate side effects including:</p>
         <ol>
-          <li>
-            <code>for in</code>
- loops are safe to use</li>
-          <li>Chaining is super easy             <code>obj[fun]()[fun]()</code>
-          </li>
-          <li>Unlimitjs             <strong>is</strong>
- Javascript, no compiling</li>
+          <li>Extending an objects prototype messes up             <code>for in</code>
+ loops.</li>
+          <li>If you extend a             <code>prototype</code>, you have the potential for your methods to be overwritten, as well as overwriting others</li>
         </ol>
-        <p>UnlimitJS intends to bring chaining and readability to Javascript.          <br>
-Instead of writing:          <code>trim(' string ')</code>
- you write           <code>' string  '[trim]()</code>
-        </p>
-        <pre><code>var trim = function(){
-  return this.replace(/^\s+|\s+$/g,'');
-}[Unlimit](true);
-
-' string '[trim]();</code></pre>
-        <p>Here is another example</p>
-        <pre><code>var yell = function(){
-  alert(''+this);
-  return this;
-}[Unlimit]();
-
-'Example string'[yell]()[yell]();</code></pre>
-        <p>The practicality and readability is demonstrated when you can change this jQuery snippet.</p>
+        <p>Ultimately, atleast in my personal opinion, prototype extension of native           <code>Object</code>
+s should only should generally be limited to the agreed standard.</p>
+        <p>UnlimitJS avoids the property overwrite issue, while still allowing chaining.</p>
+        <p>You can rewrite this</p>
         <pre><code>alert($.map($.trim($('input.name').val()).split(' '),function(str){
   return str.replace(/[-^&amp;]/,'');
 }).join(' '));</code></pre>
-        <p>to</p>
-        <pre><code>// one time set up
-$.trim[Unlimit](true);
+        <p>as </p>
+        <pre><code>$.trim[Unlimit](true);
 $.map[Unlimit](true);
 
 alert(
-     $('input.name').val()[$.trim]().split(' ')
-     [$.map](function(str){
-       return str.replace(/[-^&amp;]/,'');
-     }).join(' ')
-);</code></pre>
-        <h2 id="examples">Examples </h2>
-        <p>Simple Trim Example</p>
-        <pre><code>var trim = function(){
-  return this.replace(/^\s+|\s+$/g,'');
-}[Unlimit]();
-
-alert( &quot;   string   &quot;.toUpperCase()[trim]() )
-alert( document.title.toLowerCase()[trim]() )</code></pre>
-        <p>underscore.js + Unlimit</p>
-        <pre><code>// Unlimit underscore.js library
-for(var i in _)_[i][Unlimit](true);
-
-[0,1,2]
-  // strip falsey values
-  [_.compact]()
-  [_.each](function(i){
-    alert(i);
-  })</code></pre>
-        <p>underscore.js + Unlimit</p>
-        <pre><code>var Mammal = function(){};
-var Dog = function(){};
-
-Dog.prototype = new Mammal();
-
-Dog.prototype[_.extend]({
-  method:function(){},
-  method2:function(){}
-};</code></pre>
-        <h2 id="API">API </h2>
-        <p>
-          <strong>Calling             <code>[Unlimit]()</code>
- binds the this context to the object you are calling on.</strong>
-        </p>
-        <pre><code>var yell = function(){
-  return alert(''+this);
-}[Unlimit]();
-
-'This string is bond to &quot;this&quot; in function.'[yell]()</code></pre>
-        <p>
-          <strong>Calling             <code>[Unlimit](true)</code>
- tells the object your calling on to be passed as the first argument to the function.</strong>
-        </p>
-        <pre><code>var yell = function(obj){
-  return alert(''+obj);
-}[Unlimit](true);
-
-'1st argument is bound to this string.'[yell]()</code></pre>
-        <p>
-          <strong>Calling              <code>object[Unlimit](function(){})</code>
- allows you to unlimit objects other then             <code>Function</code>
-s.</strong>
-        </p>
-        <pre><code>var yell = {};
-yell[Unlimit](function(){
-  alert(''+this);
-});
-
-'This string is bond to the attached function.'[yell]()</code></pre>
-        <h3>Known Issues</h3>
-        <ol>
-          <li>You can no longer             <a href="http://perfectionkills.com/those-tricky-functions/">decompile a function</a>
- that has been             <code>Unlimit</code>
-ed.  In fact you             <a href="http://my.opera.com/hallvors/blog/show.dml/1665828">shouldn't decompile a function</a>
- period.  It isn't cross browser and can cause bugs.</li>
-          <li>
-            <p>
-              <code>Unlimit</code>
- doesn't work on Host Objects in IE&lt;9.  That basically means you can't expect to call               <code>Unlimit</code>
-ed functions on               <code>NodeList</code>
-s, or native DOM               <code>Element</code>
-s.  For example this will fail in IE&lt;9.</p>
-            <pre><code>var toArray = function(){
-  return Array.prototype.slice.call(this,0);
-}[Unlimit]();
-var body = document.getElementsByTagName('div')[toArray]();</code></pre>
-          </li>
-        </ol>
+  $('input.name')
+  .val()
+  [$.trim]()
+  .split(' ')
+  [$.map](function(str){
+    return str.replace(/[-^&amp;amp;]/,'');
+  })
+  .join(' ')
+)</code></pre>
 </div>
       <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
       <script src="http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.js"></script>
