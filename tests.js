@@ -11,7 +11,7 @@ if(typeof document != 'undefined' && document.write){
 }else{
 // Server
   _ = require('underscore');
-  Chain = require('./index.js');
+  Unlimit = require('./unlimit.js');
 }
 
 var assert = {};
@@ -20,11 +20,11 @@ assert.ok = function(value,message){
   else document.write(message+' - Fail');
 }
 
-_.isEqual[Chain](true);
+_.isEqual[Unlimit](true);
 
 var args = function(){
   return arguments;
-}[Chain]();
+}[Unlimit]();
 
 assert.ok(
    'noop'[args](1,2,3,4 ) [_.isEqual]( [1,2,3,4] )
@@ -33,7 +33,7 @@ assert.ok(
 
 var thisvalue = function(){
   return this;
-}[Chain]()
+}[Unlimit]()
 assert.ok(
     Object[thisvalue]() === Object
    ,'Correct this value'
@@ -41,7 +41,7 @@ assert.ok(
 
 
 var custom = function(){}
-  [Chain](function(){
+  [Unlimit](function(){
     return 'custom'
   })
 assert.ok(
@@ -50,7 +50,7 @@ assert.ok(
 );
 
 
-var this_1st_arg = function(first){return first}[Chain](true)
+var this_1st_arg = function(first){return first}[Unlimit](true)
 
 assert.ok(
     Object[this_1st_arg]() === Object
