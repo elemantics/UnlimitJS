@@ -9,7 +9,7 @@ Instead of writing:`trim(' string ')` you write `' string  '[trim]()`
 
     var trim = function(){
       return this.replace(/^\s+|\s+$/g,'');
-    }[Unlimit](true);
+    }[Unlimit]();
     
     ' string '[trim]();
 
