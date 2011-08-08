@@ -14,4 +14,6 @@ Instead of writing:`trim(' string ')` you write `' string  '[trim]()`
     ' string '[trim]();
 
 
-UnlimitJS is 436 bytes gzipped and compressed.  Checkout [the site](http://limeblack.github.com/UnlimitJS/) for more info and examples.
+UnlimitJS is 436 bytes gzipped and compressed.  UnlimitJs should work in IE6+, Firefox 3.0+, Safari 3.0+, Chrome and Opera.
+
+Checkout [the site](http://limeblack.github.com/UnlimitJS/) for more info and examples.
