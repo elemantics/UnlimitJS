@@ -14,3 +14,4 @@ Instead of writing:`trim(' string ')` you write `' string  '[trim]()`
     ' string '[trim]();
 
 
+UnlimitJS is 436 bytes gzipped and compressed.  It simply acts as a simple enhanncement.  Checkout [the site](http://limeblack.github.com/UnlimitJS/) for more examples.
