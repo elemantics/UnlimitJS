@@ -76,13 +76,7 @@ alert(
      }).join(' ')
 );</code></pre>
         <h2 id="examples">Examples </h2>
-        <p>Simple Trim Example</p>
-        <pre><code>var trim = function(){
-  return this.replace(/^\s+|\s+$/g,'');
-}[Unlimit]();
-
-alert( &quot;   string   &quot;.toUpperCase()[trim]() )
-alert( document.title.toLowerCase()[trim]() )</code></pre>
+        <p><code>Unlimit</code> is great tool to use with already existing libraries to provide a more readable chainable syntax.  <code>Unlimit</code> isn't exactly intended for libraries to create tons of global functions like <code>trim</code> and <code>yell</code>. `Unlimit` is geared towards allowing unique `method`s for libraries that can be easily chained without nested functions.  These relatively simple examples demonstrate how `Unlimit` can work with libraries existing functions.</p>
         <p>underscore.js + Unlimit</p>
         <pre><code>// Unlimit underscore.js library
 for(var i in _)_[i][Unlimit](true);
@@ -98,6 +92,8 @@ for(var i in _)_[i][Unlimit](true);
 var Dog = function(){};
 
 Dog.prototype = new Mammal();
+
+_.extend[Unlimit](true);
 
 Dog.prototype[_.extend]({
   method:function(){},
