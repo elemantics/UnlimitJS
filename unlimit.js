@@ -25,18 +25,18 @@ Unlimit.version = .2;
 
 overriden = Object.prototype[prop] || Object.prototype.isPrototypeOf || function(){};
 
-// If Unlimit versio => has been loaded, exit
+// If Unlimit version has been loaded, exit
 if(typeof overriden['Unlimit'] == 'function' && overriden['Unlimit'].version >= Unlimit.version){
   Unlimit = overriden['Unlimit'];
   exit = true;
 }
-// Server side support along with browser
+// Expose Unlimit() server side support along with browser
 if(typeof module != 'undefined' && module.exports) {
   module.exports = Unlimit;
 }else{
   root['Unlimit'] = Unlimit;
 }
-// Exit if Unlimity has been included before
+// Exit if Unlimit has been included before
 if(exit)return;
 
 function prototype(object){
