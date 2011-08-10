@@ -173,23 +173,20 @@ $('.code-load').click(function(){
   $('#overlay').css('display','block');
 })
 
-$('<div id="overlay" style="width:100%;height:100%;position:fixed;top:0;left:0;display:none;"><table border="0" style="margin:0;padding:0;width:100%;height:100%;text-align:center;"><tr><td><div style="position:relative;width:90%;height:90%;display:inline-block;zoom:1;*display:inline;"><textarea id="overlay_textarea" style="text-align:left;width:100%;height:100%;border:0;padding:5px;margin:0;"></textarea><div class="code-load">Run</div></div></td></tr></table></div>').appendTo('body');
+$('<div id="overlay"><textarea id="overlay_textarea"></textarea><div class="code-load">Run</div></div>').appendTo('body');
 
 $('#overlay .code-load').click(function(){
   setTimeout(function(){
     $.globalEval($('#overlay_textarea').val());
   },0);
   return false;
-}).css({bottom:20,right:20});
+})
 
 $('#overlay').click(function(){
   $(this).css('display','none');
 });
 
 $('#overlay_textarea').click(function(){return false});
-
-save = alert;
-
 
 })</script>
       <hr>
