@@ -52,4 +52,4 @@ yell[Unlimit](function(){
 
 Checkout [the site](http://limeblack.github.com/UnlimitJS/) for more info and examples.
 --------------------
-**licensed under MIT** 
+Unlimit is licensed under the MIT license.
