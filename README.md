@@ -15,7 +15,9 @@ var trim = function(){
 ' string '[trim]();
 ```
 
-UnlimitJS is 436 bytes gzipped and compressed.  UnlimitJs has been tested and works in IE6+, Firefox 3.0+, Safari 3.0+, Chrome and Opera.
+UnlimitJS is 436 bytes gzipped and compressed.  UnlimitJs has been tested and works in IE6+, Firefox 3.0+, Safari 3.0+, Chrome and Opera.  For node.js users simply do
+
+    npm install unlimit
 
 ##API
 **Calling `[Unlimit]()` binds the this context to the object you are calling on.**
