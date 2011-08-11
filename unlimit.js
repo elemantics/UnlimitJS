@@ -21,7 +21,7 @@ var Unlimit = function(fn,opt_fn_or_bool){
   }
   return fn;
 }
-Unlimit.version = 0.5.0;
+Unlimit.version = 0.5;
 
 overriden = Object.prototype[prop] || Object.prototype.isPrototypeOf || function(){};
 
